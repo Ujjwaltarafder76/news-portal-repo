@@ -8,13 +8,12 @@ loadAllData()
 const displayAllData = allNews => {
   const place = document.getElementById('navber-news');
   allNews.forEach(news => {
-    const categoris = document.createElement('div');
+    const div = document.createElement('div');
     // categoris.classList.add('btn');
     div.innerHTML = `
     <a id="show-all-news-length" onclick="showDetails('${news.category_id}')" class="nav-link" href="#">${news.category_name}</a>
     `
-    place.appendChild('div');
-
+    place.appendChild('div')
   })
 }
 const showDetails = (id) => {
@@ -57,7 +56,7 @@ const displayDetails = categoryId => {
     `
     placeCard.appendChild(cardDiv)
   })
-  loadSpinner
+  loadSpinner(false)
 }
 
 
