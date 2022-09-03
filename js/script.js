@@ -1,19 +1,19 @@
 const loadAllData = () => {
-  const url = `https://openapi.programming-hero.com/api/news/categories`;
+  const url = `https://openapi.programming-hero.com/api/news/categories`
   fetch(url)
     .then(res => res.json())
     .then(data => displayAllData(data.data.news_category))
 }
 loadAllData()
 const displayAllData = allNews => {
-  const place = document.getElementById('navber-news');
+  const place = document.getElementById('navbar-news')
   allNews.forEach(news => {
-    const div = document.createElement('div');
+    const div = document.createElement('div')
     // categoris.classList.add('btn');
     div.innerHTML = `
     <a id="show-all-news-length" onclick="showDetails('${news.category_id}')" class="nav-link" href="#">${news.category_name}</a>
     `
-    place.appendChild('div')
+    place.appendChild(div)
   })
 }
 const showDetails = (id) => {
@@ -58,8 +58,38 @@ const displayDetails = categoryId => {
   })
   loadSpinner(false)
 }
+const detailModal = dataId => {
+  const url = `https://openapi.programming-hero.com/api/news/${dataId}`
+  fetch(url)
+    .then(res => res.json())
+    .then(data => displayModal(data.data))
+}
+const displayModal = id => {
 
-
+  id.forEach(newsId => {
+    console.log(newsId)
+    const modalTitle = document.getElementById('exampleModalLabel')
+    modalTitle.innerText = newsId.title;
+    const modalBody = document.getElementById('modal-body')
+    modalBody.innerHTML = ` 
+    <img class="img" src="${newsId.author.img}" alt="">
+    <P>${newsId.author.name ? newsId.author.name : 'No found name'} </br> ${newsId.author.published_date}
+    <hr>
+    <p><i class="fa-solid fa-eye"></i> ${newsId.total_view ? newsId.total_view : 'No data available'} </p>
+    <p>${newsId.title}</p>
+    <img class="img-fluid" src="${newsId.thumbnail_url}" alt="">
+    `
+  })
+}
+const loadSpinner = isLoading => {
+  const loader = document.getElementById('loader')
+  if (isLoading) {
+    loader.classList.remove('d-none')
+  }
+  else {
+    loader.classList.add('d-none')
+  }
+}
 // loadNews();
 
 
