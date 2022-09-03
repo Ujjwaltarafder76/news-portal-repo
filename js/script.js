@@ -18,6 +18,18 @@ const newsCategory = allNews => {
 
   });
 }
+const showDetails = async () => {
+  loadSpinner(true)
+  const url = ``;
+  const res = await fetch(url);
+  const data = await res.json();
+  displayDetails(data.data);
+}
+const displayDetails = categoryId => {
+  const showNews = document.getElementById()
+}
+
+
 loadNews();
 
 
