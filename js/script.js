@@ -60,7 +60,7 @@ const displayData = (data) => {
   data.sort((a, b) => b.total_view - a.total_view);
   console.log(data);
 
-  // count...........
+  // counting...........
   const lengthCount = document.getElementById('length-count');
   lengthCount.innerText = data.length
 
@@ -69,7 +69,7 @@ const displayData = (data) => {
     lengthCount.innerText = 'No '
     loadingSpinner(false)
   }
-  //  card.............
+  //  cards.............
   const cardContainer = document.getElementById('card-container');
   cardContainer.innerHTML = '';
 
