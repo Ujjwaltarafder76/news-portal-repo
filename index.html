@@ -28,7 +28,9 @@
 
                     </div>
                 </div>
-                <div id="news-button">
+
+
+                <!-- <div id="news-button">
                     <button type="button" class="btn btn-light">Home</button>
                     <button type="button" class="btn btn-light">Breaking news</button>
                     <button type="button" class="btn btn-light">Regular news</button>
@@ -38,16 +40,30 @@
                     <button type="button" class="btn btn-light">Culture news</button>
                     <button type="button" class="btn btn-light">Arts news</button>
                     <button type="button" class="btn btn-light">All news</button>
-                </div>
+                </div> -->
             </nav>
         </section>
     </header>
     <main class="container">
+        <section>
+            <div id="navbar-news" class="navs">
+            </div>
+        </section>
+        <!--  -->
+        <section id="loader" class="d-none">
+            <div style="height:400px ;" class="d-flex justify-content-center align-items-center">
+                <div class="spinner-border" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+        </section>
+        <!--  -->
         <section class="my-5">
             <div id="total-found">
                 <h4><span id="show-all-news">0</span> items found for category</h4>
             </div>
         </section>
+        <!--  -->
         <section class="d-flex justify-content-between">
             <div>
                 <label for=""> Sort by View
@@ -61,10 +77,12 @@
                 <button class="btn btn-light">Trending</button>
             </div>
         </section>
+        <!--  -->
         <section class="mt-5">
             <div id="card-container" class="row row-cols-1 row-cols-md-2 g-4">
             </div>
         </section>
+        <!--  -->
 
 
         <!-- <section class="container">

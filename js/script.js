@@ -1,36 +1,67 @@
-const loadNews = async () => {
+const loadAllData = () => {
   const url = `https://openapi.programming-hero.com/api/news/categories`;
-  const res = await fetch(url);
-  const data = await res.json();
-  newsCategory(data.data.news_category);
+  fetch(url)
+    .then(res => res.json())
+    .then(data => displayAllData(data.data.news_category))
 }
-const newsCategory = allNews => {
-  const categoryContainer = document.getElementById('news-button');
+loadAllData()
+const displayAllData = allNews => {
+  const place = document.getElementById('navber-news');
   allNews.forEach(news => {
     const categoris = document.createElement('div');
-    categoris.classList.add('btn');
-    categoris.innerHtml = `
-    <div class=" text-center d-flex">
-      <button type="button" class="btn btn-light ">${news.category_name}</button>
-        </div>
-            `;
-    categoryContainer.appendChild(categoris);
+    // categoris.classList.add('btn');
+    div.innerHTML = `
+    <a id="show-all-news-length" onclick="showDetails('${news.category_id}')" class="nav-link" href="#">${news.category_name}</a>
+    `
+    place.appendChild('div');
 
-  });
+  })
 }
-const showDetails = async () => {
+const showDetails = (id) => {
   loadSpinner(true)
-  const url = ``;
-  const res = await fetch(url);
-  const data = await res.json();
-  displayDetails(data.data);
+  const url = `https://openapi.programming-hero.com/api/news/category/${id}`;
+  fetch(url)
+    .then(res => res.json())
+    .then(data => displayDetails(data.data))
 }
 const displayDetails = categoryId => {
-  const showNews = document.getElementById()
+  const showNews = document.getElementById('show-all-news').innerText = categoryId.length
+  const placeCard = document.getElementById('card-container')
+  placeCard.innerHTML = '';
+  categoryId.forEach(id => {
+    const cardDiv = document.createElement('div')
+    cardDiv.classList.add('col')
+    cardDiv.innerHTML = `
+    <div class="card mb-3" style="max-width: 540px;">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img src="${id.thumbnail_url}" class="img-fluid rounded-start" alt="...">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">${id.title}</h5>
+          <p class="card-text cards">${id.details}</p>
+          <div class="d-flex justify-content-around align-items-center">
+         <div> <img class="img-fluid img" src="${id.author.img}" alt="">  ${id.author.name ? id.author.name : "No found name"}</div>
+         <div class=""> 
+        <p>  <p/>
+        <p> <i class="fa-solid fa-eye"></i> ${id.total_view ? id.total_view : 'No data available'}</p>
+         </div>
+         <a onclick="detailModal('${id._id}')" data-bs-toggle="modal" data-bs-target="#exampleModal">  <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+      
+        </div>
+      </div>
+    </div>
+  </div>
+    `
+    placeCard.appendChild(cardDiv)
+  })
+  loadSpinner
 }
 
 
-loadNews();
+// loadNews();
 
 
 
